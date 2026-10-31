@@ -1,14 +1,12 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../components/HomePage/Header"; 
-import Footer from "../components/HomePage/Footer";
+import { Outlet } from "react-router-dom"; // routed page content slot
+import Footer from "../components/layout/Footer"; // global site footer
 
+// Page frame with the page content and the footer
 const MainLayout = () => {
   return (
+    // full height flex column wrapper
     <div className="min-h-screen flex flex-col">
-      {/* Header - Global navigation */}
-      <Header />
-
       {/* Page Content - Dynamically rendered via Outlet */}
       <main className="flex-1">
         <Outlet />

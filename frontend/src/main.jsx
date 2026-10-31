@@ -1,9 +1,10 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./app/App.jsx";
-import "./index.css";
+import { StrictMode } from "react"; // dev-mode extra checks wrapper
+import { createRoot } from "react-dom/client"; // react 18 root api
+import App from "./app/App.jsx"; // root app component
+import "./index.css"; // global styles
 
-createRoot(document.getElementById("root")).render(
+// app entry point
+createRoot(document.getElementById("root")).render( // mount to #root div
   <StrictMode>
     <App />
   </StrictMode>

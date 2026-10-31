@@ -19,11 +19,34 @@ const baseQueryWithAuth = fetchBaseQuery({
   },
 });
 
+// The one shared RTK Query API; each feature file adds its endpoints to it
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithAuth,
   // Enhanced tag types for better cache invalidation
-  tagTypes: ["User"],
+  tagTypes: [
+    "User",
+    "Product",
+    "Order",
+    "Inventory",
+    "Customer",
+    "DeliveryStaff",
+    "DeliveryAssignment",
+    "DeliveryRequest",
+    "Invoice",
+    "Return",
+    "DeliveryIssueReport",
+    "Complaint",
+    "Dashboard",
+    "FlashSale",
+    "Notification",
+    "Coupon",
+    "Cart",
+    "ReturnReason",
+    "RefundSetting",
+    "Refund",
+    "Wallet",
+  ],
   // Optimal cache configuration
   keepUnusedDataFor: 300,
   refetchOnMountOrArgChange: 300,

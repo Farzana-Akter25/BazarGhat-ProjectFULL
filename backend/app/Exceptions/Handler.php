@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+// Central handler for all exceptions thrown by the app
 class Handler extends ExceptionHandler
 {
     /**
@@ -18,13 +19,16 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
+    // Register the exception handling callbacks for the application.
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
         });
+    }
+
+    // API routes always answer in JSON
+    protected function shouldReturnJson($request, Throwable $e)
+    {
+        return $request->is('api/*') || parent::shouldReturnJson($request, $e);
     }
 }

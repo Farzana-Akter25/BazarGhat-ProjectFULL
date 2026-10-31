@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
+// Trims spaces from incoming text fields
 class TrimStrings extends Middleware
 {
     /**

@@ -2,26 +2,16 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Cross-Origin Resource Sharing (CORS) Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure your settings for cross-origin resource sharing
-    | or "CORS". This determines what cross-origin operations may execute
-    | in web browsers. You are free to adjust these settings as needed.
-    |
-    | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-    |
-    */
+    // Cross-Origin Resource Sharing (CORS) Configuration: Settings for cross-origin resource sharing or "CORS".
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:5173', 'http://127.0.0.1:5173'],
 
-    'allowed_origins_patterns' => [],
+    // Vite falls back to the next free port (5174, 5175, ...) whenever 5173 is already taken by another running dev server, so pin the allowlist to any localhost/127.0.0.1 port rather than a single hardcoded one.
+    'allowed_origins_patterns' => ['#^http://(localhost|127\.0\.0\.1):\d+$#'],
 
     'allowed_headers' => ['*'],
 
@@ -29,6 +19,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

@@ -1,14 +1,16 @@
 import React from "react";
-// Import gulo thakbe, kintu Header/Footer proyojon nei jodi Layout-e thake
-import Navbar from "../../components/HomePage/Navbar";
-import Hero from "../../components/HomePage/Hero";
-import Product from "../../components/HomePage/Product";
 
+import Navbar from "../../components/home/Navbar"; // top nav bar
+import Hero from "../../components/home/Hero"; // hero banner section
+import Product from "../../components/home/Product"; // product listing grid
+
+// Home page: banner, categories and product sections
 const HomePage = () => {
   return (
+    // page wrapper
     <div className="bg-white min-h-screen">
+
       
-      {/* 🟢 Header soriye deya hoyeche, eita Layout theke ashbe */}
 
       {/* Navbar */}
       <Navbar />
@@ -19,7 +21,7 @@ const HomePage = () => {
       {/* Products Section */}
       <Product />
 
-      {/* 🔴 Footer-o soriye dite hobe, naile Footer-o double dekhabe */}
+      
 
     </div>
   );
