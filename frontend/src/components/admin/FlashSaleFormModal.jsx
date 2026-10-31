@@ -90,7 +90,10 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
     () =>
       products
         .filter((p) => form.product_ids.includes(p.id))
-        .map((p) => ({ ...p, salePrice: previewSalePrice(Number(p.price) || 0) })),
+        .map((p) => ({
+          ...p,
+          salePrice: previewSalePrice(Number(p.price) || 0),
+        })),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [products, form.product_ids, form.discount_type, discountValue],
   );
@@ -197,7 +200,9 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
               <input
                 type="datetime-local"
                 value={form.start_at}
-                onChange={(e) => setForm((f) => ({ ...f, start_at: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, start_at: e.target.value }))
+                }
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-orange-400"
               />
             </div>
@@ -209,7 +214,9 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
               <input
                 type="datetime-local"
                 value={form.end_at}
-                onChange={(e) => setForm((f) => ({ ...f, end_at: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, end_at: e.target.value }))
+                }
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-orange-400"
               />
             </div>
@@ -224,7 +231,9 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
               </label>
               <select
                 value={form.discount_type}
-                onChange={(e) => setForm((f) => ({ ...f, discount_type: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, discount_type: e.target.value }))
+                }
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-orange-400"
               >
                 <option value="percentage">Percentage</option>
@@ -247,7 +256,9 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
                 min="1"
                 max={form.discount_type === "percentage" ? 100 : undefined}
                 value={form.discount_value}
-                onChange={(e) => setForm((f) => ({ ...f, discount_value: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, discount_value: e.target.value }))
+                }
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-orange-400"
               />
             </div>
@@ -258,7 +269,9 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
               </label>
               <select
                 value={form.status}
-                onChange={(e) => setForm((f) => ({ ...f, status: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, status: e.target.value }))
+                }
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-orange-400"
               >
                 <option value="Active">Active</option>
@@ -295,7 +308,7 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
               {/* no results message */}
               {filteredProducts.length === 0 && (
                 <p className="py-4 text-center text-xs text-slate-600">
-                  No products found.
+                  No products found please add one.
                 </p>
               )}
               {/* one row per product */}
@@ -316,13 +329,19 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
                       className="h-4 w-4 rounded border-slate-300 text-orange-500 focus:ring-orange-400"
                     />
                     {/* product name */}
-                    <span className="flex-1 truncate text-slate-700">{p.name}</span>
+                    <span className="flex-1 truncate text-slate-700">
+                      {p.name}
+                    </span>
                     {/* normal price, and what it becomes once selected */}
                     <span className="shrink-0 text-xs font-semibold text-slate-600">
                       {selected && discountValue > 0 ? (
                         <>
                           <span className="line-through">{p.price}TK</span>{" "}
-                          <span className={salePrice < 0 ? "text-red-500" : "text-green-700"}>
+                          <span
+                            className={
+                              salePrice < 0 ? "text-red-500" : "text-green-700"
+                            }
+                          >
                             {salePrice}TK
                           </span>
                         </>
@@ -343,11 +362,20 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
                 </p>
                 <ul className="max-h-24 space-y-1 overflow-y-auto text-xs">
                   {selectedPreview.map((p) => (
-                    <li key={p.id} className="flex items-center justify-between gap-2">
+                    <li
+                      key={p.id}
+                      className="flex items-center justify-between gap-2"
+                    >
                       <span className="truncate text-slate-600">{p.name}</span>
                       <span className="shrink-0 font-semibold">
-                        <span className="text-slate-600 line-through">৳{p.price}</span>{" "}
-                        <span className={p.salePrice < 0 ? "text-red-500" : "text-green-700"}>
+                        <span className="text-slate-600 line-through">
+                          ৳{p.price}
+                        </span>{" "}
+                        <span
+                          className={
+                            p.salePrice < 0 ? "text-red-500" : "text-green-700"
+                          }
+                        >
                           ৳{p.salePrice}
                         </span>
                       </span>
@@ -355,15 +383,17 @@ const FlashSaleFormModal = ({ mode = "add", flashSale, onClose, onSubmit }) => {
                   ))}
                 </ul>
                 <p className="mt-2 text-[10px] text-slate-600">
-                  Normal selling prices stay unchanged — these apply only between
-                  the start and end times.
+                  Normal selling prices stay unchanged — these apply only
+                  between the start and end times.
                 </p>
               </div>
             )}
           </div>
 
           {/* validation error */}
-          {error && <p className="text-xs font-semibold text-red-500">{error}</p>}
+          {error && (
+            <p className="text-xs font-semibold text-red-500">{error}</p>
+          )}
         </div>
 
         {/* footer actions */}
